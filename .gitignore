@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.codex.log
+.env
+dados/
+systemd/*.gerado.service

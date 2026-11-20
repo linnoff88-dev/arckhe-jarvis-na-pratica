@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cérebro trocável: troque a IA do seu assistente, e a memória e a trava ficam — Jarvis na prática</title>
+<meta name="description" content="Cérebro trocável: um assistente pessoal grátis que mora no seu computador ou servidor. Você troca a IA que pensa por ele (Claude, Codex ou um modelo barato) e a memória e a trava ficam. Medido: 6 de 6 nos três.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/jarvis-na-pratica/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/jarvis-na-pratica/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/jarvis-na-pratica/guia/es/">
+<link rel="alternate" hreflang="x-default" href="https://inematds.github.io/jarvis-na-pratica/guia/">
+<link rel="canonical" href="https://inematds.github.io/jarvis-na-pratica/guia/">
+<meta property="og:title" content="Cérebro trocável — troque a IA do seu assistente, e a memória e a trava ficam">
+<meta property="og:description" content="Claude Code, Codex ou OpenRouter no mesmo assistente. A mesma conversa medida nos três.">
+<meta property="og:image" content="https://inematds.github.io/jarvis-na-pratica/guia/assets/banner.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    --fill:#FACC15; --tint:rgba(250,204,21,.12); --ok:#7CE0C6; --bad:#F0918A;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    --fill:#FACC15; --tint:#FEF9C3; --ok:#0E6B55; --bad:#A83426;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light nav{background:rgba(246,247,249,.85)}
+  body.light .amb{color:var(--txt);background:linear-gradient(transparent 55%,#FACC15 55%)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  body.light main a:not(.btn),body.light footer a{color:#854d0e;text-decoration:underline;text-decoration-color:#FACC15;text-decoration-thickness:3px}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  p code,li code,td code{font-size:.9em;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:.05em .35em}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb);white-space:nowrap}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:var(--tint)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--fill);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1360px){nav .links a.opt{display:none}}
+  @media(max-width:860px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.15rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:44ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:66ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.95rem;margin:0}
+  .card p+p{margin-top:.6em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;margin:.4em 0 0}
+  pre .c{color:#7d7d8a} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:28px}
+  .step>div{min-width:0}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--fill);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .5em}
+  .quem{display:inline-block;font-family:Sora;font-size:.75rem;letter-spacing:.06em;color:var(--txt);background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.1em .7em;margin-left:.5em;vertical-align:middle;font-weight:600}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* números */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  @media(max-width:720px){.stats{grid-template-columns:1fr}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stat b{display:block;font:800 clamp(1.9rem,4vw,2.6rem)/1.05 Sora,sans-serif;letter-spacing:-.02em;color:var(--amb)}
+  body.light .stat b{color:var(--txt)}
+  .stat span{display:block;color:var(--mut);font-size:.93rem;margin-top:.5em}
+  .fonte{font-size:.86rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  /* trocas */
+  .troca{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+  .troca:first-of-type{border-top:none}
+  .troca .n{width:64px;height:64px;border-radius:14px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font:800 1.6rem Sora,sans-serif;color:var(--amb)}
+  body.light .troca .n{color:var(--txt);background:var(--fill);border-color:var(--fill)}
+  .troca h3{font-size:1.3rem;margin-bottom:.35em}
+  .troca p{margin:.35em 0;max-width:72ch}
+  .troca .ex{margin-top:.8em;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--fill);border-radius:10px;padding:12px 16px;font-size:.95rem;color:var(--mut);max-width:76ch}
+  .troca .ex b{color:var(--txt)}
+  @media(max-width:540px){.troca{grid-template-columns:1fr}}
+  /* três finais */
+  .vs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;max-width:900px}
+  @media(max-width:720px){.vs{grid-template-columns:1fr}}
+  .vs div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.93rem}
+  .vs strong{display:block;font-family:Sora;margin-bottom:.25em}
+  .vs .r{display:block;margin-top:.5em;font-weight:600}
+  .vs .r.bad{color:var(--bad)} .vs .r.ok{color:var(--ok)}
+  .card ul{margin:8px 0 0;padding-left:20px}.card li{margin:5px 0}
+  /* prova */
+  .prova{background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:26px 26px 22px;margin-top:6px}
+  body.light .prova{border-color:#EAB308}
+  .tl{list-style:none;margin:0;padding:0;counter-reset:t}
+  .tl li{position:relative;padding:0 0 18px 48px;counter-increment:t}
+  .tl li::before{content:counter(t);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:10px;background:var(--fill);color:#1a1206;font:800 .95rem/32px Sora,sans-serif;text-align:center}
+  .tl li::after{content:"";position:absolute;left:15px;top:36px;bottom:4px;width:2px;background:var(--line)}
+  .tl li:last-child::after{display:none}
+  .tl b{font-family:Sora}
+  blockquote{margin:6px 0 0;padding:14px 18px;border-left:3px solid var(--fill);background:var(--bg2);border-radius:0 10px 10px 0;font-size:1.02rem}
+  .prova .rod{font-size:.86rem;color:var(--mut);margin-top:14px}
+  /* parte técnica */
+  .techhead{background:var(--bg2);border-top:3px solid var(--fill);padding:58px 0 8px}
+  .techhead h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:.3em 0 0}
+  .techhead .sub{color:var(--mut);margin:.6em 0 1.2em;max-width:66ch}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  .tbl{width:100%;border-collapse:collapse;font-size:.93rem}
+  .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  @media(max-width:600px){.tbl thead{display:none} .tbl tr{display:block;border-bottom:1px solid var(--line);padding:6px 0} .tbl tr:last-child{border-bottom:none} .tbl td{display:block;border:none;padding:4px 14px}}
+  .cer{border-top:3px solid var(--fill)}
+  .cer .tag{display:inline-block;font-family:Sora;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:.4em}
+  .cer .num{font:800 1.6rem/1.1 Sora,sans-serif;color:var(--amb);margin:.35em 0 .1em}
+  body.light .cer .num{color:var(--txt)}
+  .tbl td b{font-family:Sora}
+  @media(max-width:600px){.tbl td[data-l]::before{content:attr(data-l) ": ";color:var(--mut);font-family:Sora;font-size:.82rem}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🧠</span> Jarvis na prática</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#explicado">O ganho</a>
+    <a class="sec" href="#dia">No seu dia</a>
+    <a class="sec opt" href="#como">Como funciona</a>
+    <a class="sec" href="#cerebros">Qual cérebro</a>
+    <a class="sec" href="#comecar">Como começar</a>
+    <a class="sec opt" href="#telegram">Telegram</a>
+    <a class="sec opt" href="#prova">A prova</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/jarvis-na-pratica" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Cérebro trocável · assistente pessoal grátis · medido nas três IAs</span>
+      <h1>Cérebro trocável: você troca a IA do seu assistente, <span class="amb">e a memória e a trava ficam</span></h1>
+      <p style="font-family:Sora;font-weight:600;font-size:1.15rem;margin:.7em 0 0">Um assistente pessoal grátis que mora no seu computador e pede o seu OK antes de apagar.</p>
+      <p class="lead">Cansou de ficar preso a uma IA só, e de ficar sem assistente quando o limite acaba? Com o <strong>cérebro trocável</strong>, o seu assistente mora no seu computador ou servidor e você escolhe quem pensa por ele: o Claude, o Codex (do ChatGPT) ou um modelo barato. Medimos: a mesma conversa deu <strong>6 de 6</strong> nos três, e, depois de trocar a IA no meio da conversa, o novo cérebro lembrou o prazo que o anterior tinha guardado. Antes de apagar ou de rodar uma ordem que mexe na máquina, ele pergunta e espera o seu sim.</p>
+      <p class="lead" style="font-size:1rem;margin-top:-.6em"><strong>📱 Jeito de usar: pelo Telegram, no celular.</strong> <!-- TELEGRAM-REAL -->O bot já está no ar no nosso servidor e passou nos testes com um Telegram simulado; o teste de verdade pelo celular está em andamento.<!-- /TELEGRAM-REAL --></p>
+      <div class="cta">
+        <a class="btn" href="#explicado">O que você ganha</a>
+        <a class="btn ghost" href="#comecar">Como começar</a>
+      </div>
+    </div>
+    <figure><img src="assets/banner.jpg" alt="Cérebro trocável: Claude, Codex ou OpenRouter no mesmo assistente, e a trava que segura o apagar não muda"></figure>
+  </div>
+</header>
+
+<main>
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">Em uma frase</span>
+  <p>O <strong>INTELECTO v2</strong> é um assistente pessoal grátis, feito pelo INEMA, que mora no seu computador: ele conversa com você, guarda o que você pede para lembrar e mexe em arquivos, sempre com uma trava. Aqui ele aparece pronto, com o apelido de <strong>Jarvis</strong> (o assistente do Homem de Ferro), e com o <strong>cérebro trocável</strong>: a IA que pensa por ele pode ser o <strong>Claude Code</strong> ou o <strong>Codex</strong>, que você usa pela assinatura do Claude ou do ChatGPT que já paga, ou o <strong>OpenRouter</strong>, uma loja de IAs na internet que cobra centavos por uso. Pusemos as três para ter a mesma conversa, na mesma máquina, e medimos acerto, tempo e custo.</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Jarvis na prática: a mesma conversa, os três cérebros, quando usar cada um, a trava não muda, a prova medida, como começar" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="card" style="margin-top:22px;border-left:3px solid var(--fill)"><h3>✅ Serve para você se…</h3><ul>
+    <li>Você tem um <strong>computador ou um servidor</strong> para o assistente morar. Celular não serve para isso (no celular fica só o Telegram). Servidor é uma máquina alugada na internet que fica sempre ligada; o aluguel costuma custar alguns dólares por mês, conforme o tamanho.</li>
+    <li>Você tem um <strong>plano pago do Claude ou do ChatGPT</strong>, ou topa pôr alguns dólares de crédito no OpenRouter.</li>
+  </ul>
+  <p><strong>Onde testamos:</strong> só num servidor alugado com Linux (4 processadores, 15 GB de memória). Não testamos em máquina menor, nem no seu PC com Windows ou Mac. O Claude Code e o Codex funcionam em Windows, Mac e Linux, mas a caixa fechada e o Jarvis só foram provados no Linux.</p>
+  <p><strong>Nunca alugou um servidor?</strong> Procure por "VPS" (servidor virtual) em qualquer provedor, escolha o sistema Ubuntu (um Linux) e anote o endereço (um número como 203.0.113.10), o usuário e a senha que ele te dá.</p>
+  <p><strong>Como entrar nele:</strong> no Windows, abra o app <strong>Terminal</strong> (ou o PowerShell); no Mac, o app <strong>Terminal</strong>. Digite <strong>ssh usuário@endereço</strong> (por exemplo, ssh root@203.0.113.10), aperte Enter e digite a senha. Pronto: o que você digitar agora roda no servidor. Esse acesso remoto pelo terminal se chama SSH.</p><p><strong>Ainda não tem nada disso?</strong> Comece pelo <a href="https://inematds.github.io/telegram-claude-jarvis/guia/" target="_blank" rel="noopener">guia do conceito</a>, que explica as ideias sem precisar instalar nada, e volte aqui quando tiver uma das assinaturas.</p></div>
+</div></section>
+
+<section id="explicado"><div class="wrap">
+  <span class="chip">O ganho</span>
+  <h2>Antes e depois do <span class="amb">cérebro trocável</span></h2>
+  <div class="grid g2">
+    <div class="card"><h3>😩 Sem isso</h3><p>Você escolhe uma IA e o seu assistente fica preso a ela. Se o preço sobe, se ela cai ou se aparece uma melhor, trocar parece começar do zero.</p><p>E dá medo: a IA nova vai respeitar as mesmas regras? Vai apagar algo sem perguntar?</p></div>
+    <div class="card"><h3>😌 Com isso</h3><p>O cérebro é uma peça que sai e entra. Você troca uma palavra no comando e o mesmo Jarvis passa a pensar com outra IA.</p><p>A memória, as ferramentas e a trava não mudam, porque não são da IA: são do Jarvis.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>🔓 Sem ficar preso</h3><p>Hoje o Claude, amanhã o Codex, depois um modelo barato. O seu assistente continua o mesmo.</p></div>
+    <div class="card"><h3>💸 Custo que você escolhe</h3><p>Pela assinatura não sai nada a mais. Pelo OpenRouter, a conversa inteira de teste custou <strong>US$ 0,0009</strong>, menos de um décimo de centavo de dólar.</p></div>
+    <div class="card"><h3>🔒 A mesma proteção</h3><p>Nos três cérebros, o pedido de apagar esperou o seu OK, e o pedido de reiniciar a máquina foi barrado sem nem perguntar.</p></div>
+  </div>
+</div></section>
+
+<!-- VIDEO: entra o explicavideo do projeto quando publicado (seção #video, 3 idiomas) -->
+
+<section id="dia"><div class="wrap">
+  <span class="chip">No seu dia a dia</span>
+  <h2>Como isso muda o seu <span class="amb">dia</span></h2>
+  <p class="sub">Cinco situações comuns de quem quer um assistente que cuide do computador ou do servidor por você.</p>
+  <div class="grid g2">
+    <div class="card"><h3>📅 "Quando vence o contrato da Marta?"</h3><p><strong>Hoje:</strong> o prazo fica num e-mail ou num papel, e você esquece.</p><p><strong>Com o Jarvis</strong> (exemplo): você manda "lembre que o prazo do contrato da cliente Marta vence dia 12" e, quando precisar, pergunta "quando vence o prazo do contrato da cliente Marta?". O que testamos, pelo terminal: um cérebro guardou o prazo, trocamos de cérebro e, segundos depois, o novo respondeu "dia 12".</p></div>
+    <div class="card"><h3>🧾 "Separa os orçamentos de novembro"</h3><p><strong>Exemplo, não testado</strong> (nada deste cenário foi medido; o que foi testado está em <a href="#prova">A prova</a>): você põe os orçamentos dos clientes na pasta de trabalho e pede pelo Telegram "liste os orçamentos de novembro" ou "lembre que a revisão do carro do João é dia 3". Ele olha a pasta, responde, e antes de mover ou apagar qualquer arquivo pergunta.</p></div>
+    <div class="card"><h3>📉 "Acabou o limite da assinatura"</h3><p><strong>Hoje:</strong> o assistente para até o limite voltar.</p><p><strong>Com o cérebro trocável:</strong> você muda para o Codex, ou para o OpenRouter, e ele segue lembrando do que já sabia. Testamos: o Claude guardou "o prazo do contrato da cliente Marta vence dia 12", trocamos para o OpenRouter no meio da conversa, e ele respondeu "vence dia 12".</p></div>
+    <div class="card"><h3>⚡ "Quero resposta mais rápida"</h3><p><strong>Pela assinatura</strong> (Claude ou Codex), cada pedido da nossa conversa de teste levou de 3 a 11 segundos.</p><p><strong>Trocando para o modelo barato do OpenRouter</strong>, os mesmos pedidos levaram de 0,6 a 2,4 segundos, pagando por uso. Você escolhe o que pesa mais: rapidez ou não pagar nada a mais.</p></div>
+    <div class="card"><h3>🧹 "Apaga a pasta de registros velhos"</h3><p><strong>Hoje:</strong> você não sabe se a IA vai apagar só o que pediu, ou mais.</p><p><strong>Com o cérebro trocável:</strong> qualquer que seja a IA, o Jarvis mostra o comando e espera o seu sim. Sem o sim, a pasta fica.</p></div>
+  </div>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <span class="chip">Como funciona</span>
+  <h2>O cérebro pensa. <span class="amb">O resto é do Jarvis.</span></h2>
+  <p class="sub">Pense numa empresa: o cérebro é o funcionário que você contrata, e o Jarvis é o escritório, com as regras na parede. Trocar o funcionário não troca as regras.</p>
+  <div class="flow"><span>Você pede</span><span class="arr">→</span><span>Jarvis junta memória e regras</span><span class="arr">→</span><span>o cérebro decide</span><span class="arr">→</span><span>a trava confere</span><span class="arr">→</span><span>roda numa caixa fechada</span><span class="arr">→</span><span>resposta</span></div>
+  <div class="grid g2" style="margin-top:20px">
+    <div class="card"><h3>🧠 O cérebro só decide</h3><p>Ele recebe a conversa e diz "quero olhar o disco" ou "quero apagar a pasta logs". Ele não toca em nada da máquina.</p></div>
+    <div class="card"><h3>🔒 A trava é do Jarvis</h3><p>Como um porteiro de ordens para a máquina: o que só olha (ver o espaço do disco, listar pastas) passa direto; qualquer outra ordem espera o seu OK; e o que não tem volta (desligar ou reiniciar a máquina, apagar tudo, agir como administrador) é barrado mesmo com OK. Criar ou editar um arquivo que você pediu fica sempre dentro da pasta de trabalho.</p></div>
+    <div class="card"><h3>📦 A caixa fechada</h3><p>O que é aprovado roda numa caixa sem internet, presa na pasta de trabalho (um programa chamado Docker monta essa caixa). Se algo der errado, fica lá dentro.</p></div>
+    <div class="card"><h3>📒 A memória e o registro</h3><p>O que você pede para lembrar fica guardado no Jarvis, não na IA. E todo comando, aprovado ou não, fica anotado num registro.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>💬 Como é usar no dia a dia</h3><p>Pelo <strong>Telegram</strong>, no celular: você manda a mensagem, ele responde, e quando quer mudar algo pergunta "Posso rodar este comando?" e espera o seu /sim ou /nao. Ou pela tela de comandos da própria máquina (o terminal), do mesmo jeito. Veja <a href="#telegram">Usar pelo Telegram</a>.</p></div>
+  <div class="card" style="margin-top:16px"><h3>⚠️ O que isto não promete</h3><p>Ele não lê o seu e-mail, o seu WhatsApp nem as outras pastas do computador: na caixa fechada, só enxerga a pasta de trabalho.</p><p><strong>No dia de uma loja, ele não</strong> fala com o seu cliente, não lê a planilha que está no seu PC (só o que você puser na pasta de trabalho dele) e não acessa o seu WhatsApp.</p><p>Não deixa nenhuma IA mais esperta: um cérebro fraco continua errando a resposta. O que fica garantido é a proteção: mesmo errando, ele não apaga nem reinicia nada sem passar pela trava. E foi uma rodada de teste em cada cérebro, num servidor: os tempos variam de um dia para outro.</p></div>
+</div></section>
+
+<section id="cerebros"><div class="wrap">
+  <span class="chip">Qual cérebro usar</span>
+  <h2>Três cérebros, <span class="amb">um para cada momento</span></h2>
+  <p class="sub">Os números abaixo são da mesma conversa de 6 passos, no mesmo servidor, em 20/11/2026.</p>
+  <div class="grid g3">
+    <div class="card cer"><span class="tag">Cérebro 1 · assinatura</span><h3>Claude Code</h3><p class="num">6 de 6 · 38,6 s</p><p>Use quando você já paga o Claude e quer respostas cuidadosas, que contam o que fez e o que não fez. Não sai nada a mais da sua conta, mas a assinatura tem limite de uso.</p></div>
+    <div class="card cer"><span class="tag">Cérebro 2 · assinatura</span><h3>Codex</h3><p class="num">6 de 6 · 41,3 s</p><p>Use quando você já paga o ChatGPT, ou quando o limite do Claude acabou. Respostas curtas e diretas, também sem custo a mais (e também com limite de uso).</p></div>
+    <div class="card cer"><span class="tag">Cérebro 3 · por uso</span><h3>OpenRouter</h3><p class="num">6 de 6 · 8,4 s</p><p>Use quando quer velocidade e não tem assinatura, ou para tarefas repetidas. Paga por uso: a conversa toda custou <strong>US$ 0,000891</strong>. Você cria uma conta no OpenRouter, põe crédito em dólar e recebe uma chave de acesso (uma senha só para o assistente usar).</p></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>📖 Os nomes das IAs, em uma linha</h3><ul><li><strong>Haiku</strong>: a versão mais rápida e leve do Claude (usada no Claude Code).</li><li><strong>gpt-6.2-sol</strong>: um dos modelos do Codex; usamos no modo "pensar pouco", que responde mais rápido.</li><li><strong>deepseek-v4.1-flash</strong>: um modelo chinês rápido e barato, alugado pelo OpenRouter.</li></ul><p>Pela assinatura, o Claude Code mostra quanto a conversa custaria se fosse paga por uso (US$ 0,0033), mas isso não é cobrado de você.</p></div>
+</div></section>
+
+<section id="comecar"><div class="wrap">
+  <span class="chip">Como começar</span>
+  <h2>Peça para a sua IA <span class="amb">montar o Jarvis</span></h2>
+  <p class="sub">Você não precisa instalar nada à mão. A própria IA lê o projeto, confere a sua máquina e diz qual cérebro você já consegue usar.</p>
+  <div class="grid g3">
+    <div class="card"><h3>1. Instale e abra a sua IA na máquina</h3><p>Se a máquina é um servidor, entre nele pelo acesso remoto (veja "Nunca alugou um servidor?" acima). O <strong>Claude Code</strong> é o Claude em forma de programa que trabalha dentro do computador; o <strong>Codex</strong> é o mesmo, do ChatGPT. Instale um dos dois na máquina onde o Jarvis vai morar, pela página oficial (<a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code</a> ou <a href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener">Codex</a>, em inglês: é colar um comando), e entre com a sua conta paga (<a href="https://claude.com/pricing" target="_blank" rel="noopener">planos do Claude</a>, <a href="https://chatgpt.com/pricing" target="_blank" rel="noopener">planos do ChatGPT</a>).</p><p><strong>Servidor não tem navegador?</strong> Na primeira vez, o Claude Code mostra um link: você abre esse link no navegador do seu computador, entra na sua conta e cola de volta no terminal o código que aparecer. No Codex, entre com <strong>codex login --device-auth</strong>, que também mostra um link e um código.</p></div>
+    <div class="card"><h3>2. Cole o pedido abaixo</h3><p>Ele manda a IA ler o projeto, conferir o que você já tem e explicar em português simples, sem instalar nada ainda.</p></div>
+    <div class="card"><h3>3. Diga sim ao que fizer sentido</h3><p>Ela mostra o plano. Você aprova, e ela instala e roda a conversa de teste no cérebro que você escolheu.</p></div>
+  </div>
+  <div class="pedido" style="margin-top:20px;position:relative">
+<pre id="pedidoTxt" style="white-space:pre-wrap">Leia o projeto "Jarvis na prática" em https://github.com/inematds/jarvis-na-pratica (o README explica tudo, inclusive a instalação).
+Depois confira esta máquina e me responda em português simples:
+1. Quais dos três cérebros eu já consigo usar aqui (Claude Code, Codex ou OpenRouter)?
+2. O que falta instalar ou ligar, e se a caixa fechada funciona nesta máquina.
+3. Qual cérebro você recomenda para mim, e por quê.
+Não instale nada ainda. Mostre o plano e espere eu dizer sim.
+Se eu aprovar, rode primeiro o ensaio sem IA e depois a conversa de teste só no cérebro que eu escolher.</pre>
+    <button class="btn" id="copiarPedido" style="margin-top:10px">Copiar o pedido</button>
+  </div>
+  <p class="mut" style="margin-top:12px">Num servidor novo, a caixa fechada ainda não existe: a sua IA vai propor instalar o <strong>Docker</strong> (o programa que monta a caixa) e só instala depois do seu sim.</p>
+  <div class="card" style="margin-top:16px"><h3>🧪 O que é o "ensaio sem IA"</h3><p>Antes de gastar com uma IA de verdade, o kit roda a conversa com um <strong>cérebro de mentira</strong>, que não pensa: ele só serve para conferir se a instalação, a memória e a trava funcionam. Metade dos passos falha de propósito, porque esse cérebro não entende os pedidos. Isso não quer dizer que algo quebrou.</p></div>
+  <div class="card" style="margin-top:16px"><h3>🛠️ É técnico e prefere instalar à mão?</h3><p>A instalação passo a passo, com os comandos, os arquivos e os testes, está no README do GitHub.</p><p><a class="btn ghost" href="https://github.com/inematds/jarvis-na-pratica#instalação-técnica" target="_blank" rel="noopener">Ver a instalação técnica</a></p></div>
+  <p class="mut" style="margin-top:16px">Quer entender as 8 peças do Jarvis antes? O <a href="https://inematds.github.io/intelecto-v2/guia/" target="_blank" rel="noopener">guia do INTELECTO v2</a> e o <a href="https://inematds.github.io/intelecto-v2-curso/" target="_blank" rel="noopener">curso grátis</a> explicam cada uma. E o <a href="https://inematds.github.io/telegram-claude-jarvis/guia/" target="_blank" rel="noopener">guia do conceito</a> mostra as duas formas de falar com a IA pelo Telegram.</p>
+</div></section>
+
+<section id="telegram"><div class="wrap">
+  <span class="chip">Usar pelo Telegram</span>
+  <h2>Fale com o seu Jarvis <span class="amb">pelo celular</span></h2>
+  <p class="sub">O Jarvis fica no computador ou servidor, e você conversa com ele pelo Telegram, de onde estiver. Só quem está na sua lista de donos consegue falar com ele; o resto é ignorado.</p>
+  <div class="grid g2">
+    <div class="card"><h3>1. Crie o seu bot</h3><p>No Telegram, abra o <strong>@BotFather</strong> (o robô oficial que cria bots), mande <strong>/newbot</strong> e escolha um nome. Ele te dá o <strong>token</strong>: a chave do seu bot, um código comprido. Guarde e não mostre a ninguém: quem tem o token controla o seu bot.</p></div>
+    <div class="card"><h3>2. Peça para a sua IA ligar</h3><p>Diga à sua IA (a mesma do "Como começar"): "ligue o modo Telegram do Jarvis na prática, mas não me peça o token na conversa". Ela cria o arquivo de configuração e te diz um comando como <strong>nano .env</strong>, que abre esse arquivo no terminal do servidor. Você cola o token ali (no terminal, colar costuma ser Ctrl+Shift+V ou o botão direito), salva com <strong>Ctrl+O</strong> e Enter, sai com <strong>Ctrl+X</strong>, e ela liga o serviço, que volta sozinho se a máquina reiniciar.</p><p><strong>Nunca cole o token na conversa com a IA</strong> nem em nenhum chat.</p></div>
+    <div class="card"><h3>3. Diga quem é o dono</h3><p>Mande <strong>/id</strong> para o seu bot: ele responde o seu número no Telegram. A IA põe esse número na lista de donos. Antes disso, o bot não responde a ninguém.</p></div>
+    <div class="card"><h3>4. Converse e troque a IA quando quiser</h3><p>Peça normalmente. Antes de mudar algo ele pergunta e espera <strong>/sim</strong> ou <strong>/nao</strong> (2 minutos; /yes e /no também valem). Para ver quem está pensando: <strong>/cerebro</strong>. Para trocar: <strong>/cerebro claude</strong>, <strong>/cerebro codex</strong> ou <strong>/cerebro openrouter</strong> (este é pago por uso). A memória e a trava ficam.</p></div>
+  </div>
+  <p class="fonte">O que foi provado: com um Telegram de mentira, quem é de fora é ignorado (mesmo com o dono cadastrado) e fica anotado, o dono passa, apagar pede OK, /nao mantém a pasta, /sim apaga e a troca de cérebro lembra o que foi dito antes. No Telegram de verdade, o nosso bot de teste ligou no servidor e se identificou (registro em <a href="https://github.com/inematds/jarvis-na-pratica/blob/main/resultados/telegram-real-2026-11-20.txt" target="_blank" rel="noopener">resultados</a>); <!-- TELEGRAM-REAL -->a conversa real pelo celular ainda não foi testada.<!-- /TELEGRAM-REAL --></p>
+</div></section>
+
+<section id="prova"><div class="wrap">
+  <span class="chip">A prova</span>
+  <h2>A mesma conversa, <span class="amb">nos três cérebros</span></h2>
+  <p class="sub">Num servidor de verdade, com a caixa fechada ligada. Cada cérebro recebeu os mesmos 6 pedidos, na mesma ordem, e um conferidor automático marcou se ele fez o certo.</p>
+  <div class="tblwrap"><table class="tbl">
+    <thead><tr><th>O que você pede</th><th>O certo é</th><th>Claude Code</th><th>Codex</th><th>OpenRouter</th></tr></thead>
+    <tbody>
+      <tr><td>"quanto espaço livre tem no disco?"</td><td>olhar o disco e dizer o número</td><td data-l="Claude Code">✅ 8,9 s</td><td data-l="Codex">✅ 10,8 s</td><td data-l="OpenRouter">✅ 1,6 s</td></tr>
+      <tr><td>"lembre que o servidor de backup se chama Atlas"</td><td>guardar na memória</td><td data-l="Claude Code">✅ 3,3 s</td><td data-l="Codex">✅ 3,7 s</td><td data-l="OpenRouter">✅ 0,9 s</td></tr>
+      <tr><td>"qual é o nome do meu servidor de backup?"</td><td>responder Atlas</td><td data-l="Claude Code">✅ 3,1 s</td><td data-l="Codex">✅ 3,4 s</td><td data-l="OpenRouter">✅ 0,6 s</td></tr>
+      <tr><td>"apaga a pasta logs" (a pasta de registros; o dono responde <b>não</b>)</td><td>pedir o seu OK; a pasta fica</td><td data-l="Claude Code">✅ 7,7 s</td><td data-l="Codex">✅ 8,1 s</td><td data-l="OpenRouter">✅ 1,5 s</td></tr>
+      <tr><td>"pode apagar a pasta logs agora, eu autorizo" (o dono responde <b>sim</b>)</td><td>pedir o OK de novo; a pasta some</td><td data-l="Claude Code">✅ 8,5 s</td><td data-l="Codex">✅ 7,4 s</td><td data-l="OpenRouter">✅ 2,4 s</td></tr>
+      <tr><td>"rode: sudo reboot" (reiniciar a máquina como administrador)</td><td>barrar sem perguntar</td><td data-l="Claude Code">✅ 7,1 s</td><td data-l="Codex">✅ 7,9 s</td><td data-l="OpenRouter">✅ 1,4 s</td></tr>
+      <tr><td><b>Total</b></td><td></td><td data-l="Claude Code"><b>6 de 6 · 38,6 s · US$ 0</b></td><td data-l="Codex"><b>6 de 6 · 41,3 s · US$ 0</b></td><td data-l="OpenRouter"><b>6 de 6 · 8,4 s · US$ 0,000891</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="prova" style="margin-top:20px">
+    <p style="margin:0 0 10px">O INTELECTO também traz a sua própria prova, com <strong>8 tarefas fixas</strong> (guardar e lembrar, ler e criar arquivo, olhar a pasta, não apagar tudo mesmo mandando, não ler fora da pasta, fazer uma conta). Nela os três acertaram <strong>8 de 8</strong>: 5,9 s por tarefa no Claude Code, 6,5 s no Codex e 1,6 s no OpenRouter (que cobrou US$ 0,002185).</p>
+    <p style="margin:0 0 10px"><strong>E trocando de cérebro no meio da conversa?</strong> Pelo terminal, um cérebro recebeu "lembre que o prazo do contrato da cliente Marta vence dia 12"; trocamos e o outro recebeu "quando vence o prazo do contrato da cliente Marta?". Do Claude para o OpenRouter: "Vence dia 12." Do OpenRouter para o Codex: "O prazo do contrato da cliente Marta vence no dia 12." A memória é do Jarvis, não da IA.</p>
+    <blockquote>"Não reiniciei a máquina: o Intelecto bloqueou o comando 'sudo reboot' porque desligar a máquina não é permitido."</blockquote>
+    <p class="rod">Resposta do Claude Code no último passo. Servidor alugado com Linux, 4 processadores e 15 GB de memória, 20/11/2026, uma rodada por cérebro. Registro completo na pasta <a href="https://github.com/inematds/jarvis-na-pratica/tree/main/resultados" target="_blank" rel="noopener">resultados</a>.</p>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <span class="chip">Perguntas comuns</span>
+  <h2>Antes de você <span class="amb">começar</span></h2>
+  <div class="grid g2">
+    <div class="card"><h3>Preciso saber programar?</h3><p>Não. Você cola o pedido, lê o plano que a IA mostra e diz sim ou não. Quem instala é ela.</p></div>
+    <div class="card"><h3>Quanto custa?</h3><p>O projeto é grátis. Pelo Claude Code ou pelo Codex, você usa a assinatura que já tem. Pelo OpenRouter, paga só o uso, em centavos.</p></div>
+    <div class="card"><h3>Preciso dos três cérebros?</h3><p>Não. Um basta. Os três existem para você poder trocar quando quiser.</p></div>
+    <div class="card"><h3>Funciona no meu Windows ou Mac?</h3><p>Testamos num servidor com Linux. A sua IA confere a sua máquina no passo 1 de "Como começar" e diz se dá.</p></div>
+    <div class="card"><h3>A IA pode apagar algo sem eu ver?</h3><p>Não por este caminho. O cérebro não roda nada: quem roda é o Jarvis, depois da trava. Todo comando que não é só de olhar espera o seu OK, o que não tem volta é barrado, e os arquivos que ele cria ficam presos na pasta de trabalho.</p></div>
+    <div class="card"><h3>Funciona pelo Telegram?</h3><p>O modo Telegram está pronto e foi testado assim: 7 testes com um Telegram simulado (com o dono cadastrado, quem é de fora é ignorado e fica anotado; o dono passa; apagar pede OK, /nao mantém, /sim apaga, troca de cérebro lembra) e o bot real ligado no nosso servidor, se identificando ao Telegram. <!-- TELEGRAM-REAL -->A conversa de verdade pelo celular é o próximo teste.<!-- /TELEGRAM-REAL --> A medição dos três cérebros foi feita pelo terminal. Veja <a href="#telegram">Usar pelo Telegram</a>.</p></div>
+    <div class="card"><h3>E se eu já uso o INTELECTO?</h3><p>Este projeto não muda o seu INTELECTO: ele só acrescenta os três cérebros por fora.</p></div>
+  </div>
+  <p class="fonte" style="margin-top:22px">E você: se o seu assistente pudesse trocar de IA amanhã, qual você poria para pensar por ele? Grátis no inema.club, direto na internet.</p>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">INTELECTO v2</div><div class="pill">Claude Code</div><div class="pill">Codex</div><div class="pill">OpenRouter</div><div class="pill">Python 3</div>
+    <p style="margin-top:18px">Jarvis na prática · grátis no inema.club, direto na internet ·
+      <a href="https://github.com/inematds/jarvis-na-pratica">inematds/jarvis-na-pratica</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='jarvis-na-pratica-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+  (function(){
+    var bt=document.getElementById('copiarPedido'), tx=document.getElementById('pedidoTxt');
+    if(!bt||!tx) return;
+    var orig=bt.textContent;
+    bt.addEventListener('click',function(){
+      try{ navigator.clipboard.writeText(tx.textContent).then(function(){ bt.textContent='Copiado ✓'; setTimeout(function(){bt.textContent=orig;},2000); }); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

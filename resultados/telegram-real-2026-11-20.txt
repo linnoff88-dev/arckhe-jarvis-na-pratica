@@ -1,0 +1,7 @@
+# prova do bot real (VPS6), coletado 2026-11-20T03:30:28-03:00 — sem token
+unit jarvis-na-pratica-telegram: active (enabled: enabled)
+linha de início do serviço:
+Jarvis no Telegram: @<bot de teste> · cérebro claude · donos 1 · executor caixa · memória em ~/kits/jarvis-na-pratica/dados
+donos no .env: 1
+permissão do .env: 600
+o que NÃO foi feito: nenhuma mensagem enviada pelo bot; teste do dono no celular ainda não feito

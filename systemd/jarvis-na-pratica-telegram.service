@@ -1,0 +1,17 @@
+[Unit]
+Description=Jarvis na prática no Telegram (INTELECTO v2 + cérebro trocável)
+After=network-online.target docker.service
+
+[Service]
+# A memória e a pasta de trabalho do Jarvis ficam em dados/ (dados/area é onde ele mexe).
+WorkingDirectory=%h/kits/jarvis-na-pratica/dados/area
+Environment=PATH=%h/.local/bin:%h/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PYTHONUNBUFFERED=1
+Environment=JARVIS_HOME=%h/kits/jarvis-na-pratica/dados
+ExecStart=%h/kits/jarvis-na-pratica/.venv/bin/python %h/kits/jarvis-na-pratica/jarvis.py telegram --cerebro claude --executor caixa
+Restart=on-failure
+RestartSec=10
+MemoryMax=2G
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,23 @@
+{
+ "quando": "2026-11-20T01:46:08",
+ "maquina": "srv1162715",
+ "de": "openrouter",
+ "para": "codex",
+ "acertou": true,
+ "passos": [
+  {
+   "cerebro": "openrouter",
+   "modelo": "deepseek/deepseek-v4.1-flash",
+   "fala": "lembre que o prazo do contrato da cliente Marta vence dia 12",
+   "resposta": "Anotado: o prazo do contrato da cliente Marta vence dia 12.",
+   "segundos": 0.4
+  },
+  {
+   "cerebro": "codex",
+   "modelo": "gpt-6.2-sol",
+   "fala": "quando vence o prazo do contrato da cliente Marta?",
+   "resposta": "O prazo do contrato da cliente Marta vence no dia 12.",
+   "segundos": 4.0
+  }
+ ]
+}

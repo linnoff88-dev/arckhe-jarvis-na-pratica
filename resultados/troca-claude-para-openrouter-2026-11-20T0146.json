@@ -1,0 +1,23 @@
+{
+ "quando": "2026-11-20T01:46:03",
+ "maquina": "srv1162715",
+ "de": "claude",
+ "para": "openrouter",
+ "acertou": true,
+ "passos": [
+  {
+   "cerebro": "claude-code",
+   "modelo": "haiku",
+   "fala": "lembre que o prazo do contrato da cliente Marta vence dia 12",
+   "resposta": "Anotado: o prazo do contrato da cliente Marta vence dia 12.",
+   "segundos": 3.4
+  },
+  {
+   "cerebro": "openrouter",
+   "modelo": "deepseek/deepseek-v4.1-flash",
+   "fala": "quando vence o prazo do contrato da cliente Marta?",
+   "resposta": "Vence dia 12.",
+   "segundos": 1.0
+  }
+ ]
+}
