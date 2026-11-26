@@ -1,7 +1,7 @@
 """Cérebro 2 — Codex pela ASSINATURA do ChatGPT (`codex exec`). Sem API, sem chave.
 
-`--output-schema` obriga o formato; `-s read-only` numa pasta vazia e `--ephemeral` (não guarda sessão).
-O esquema estrito da OpenAI não aceita objeto de chaves livres, então os argumentos de cada
+`--output-schema` obriga o formato; `-s read-only` numa pasta vazia e `--ephemeral` (nêo guarda sessêo).
+O esquema estrito da OpenAI nêo aceita objeto de chaves livres, entêo os argumentos de cada
 ferramenta vêm como texto JSON em `args_json` (o comum.normalizar converte).
 O prompt entra pelo stdin ("-") e o stdin é fechado; sem isso o codex exec espera para sempre.
 """
@@ -26,7 +26,7 @@ ESQUEMA = {
     },
     "required": ["texto", "chamadas"],
 }
-AVISO = ("Você está sendo usado só como cérebro: NÃO rode comandos nem leia arquivos desta pasta. "
+AVISO = ("Você está sendo usado só como cérebro: NêO rode comandos nem leia arquivos desta pasta. "
          "Devolva apenas o JSON. Em 'chamadas', 'args_json' é um objeto JSON em texto, ex.: "
          '{"comando": "df -h /"}.')
 

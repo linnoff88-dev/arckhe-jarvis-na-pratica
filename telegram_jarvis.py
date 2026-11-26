@@ -2,11 +2,11 @@
 
     python3 jarvis.py telegram --cerebro claude
 
-- Token e donos vêm do arquivo .env do kit (TELEGRAM_BOT_TOKEN=, DONOS=id1,id2), lidos em tempo de execução.
-  O token não vai para o ambiente do processo: os cérebros (claude -p, codex exec) nunca o recebem.
+- Token e donos vêm do arquivo .env do kit (TELEGRAM_BOT_TOKEN=, DONOS=id1,id2), lidos em tempo de execuçêo.
+  O token nêo vai para o ambiente do processo: os cérebros (claude -p, codex exec) nunca o recebem.
 - Long polling (sem porta aberta) e uma instância só (trava de arquivo).
 - /cerebro <claude|codex|openrouter> troca a IA na conversa; memória, trava e caixa continuam as do Jarvis.
-- A memória fica numa pasta fixa (JARVIS_HOME, padrão ./dados), então dura entre reinícios.
+- A memória fica numa pasta fixa (JARVIS_HOME, padrêo ./dados), entêo dura entre reinícios.
 """
 import fcntl
 import os
@@ -17,7 +17,7 @@ AQUI = pathlib.Path(__file__).resolve().parent
 DESCRICAO = {
     "claude": "Claude Code pela assinatura (sem custo a mais)",
     "codex": "Codex pela assinatura do ChatGPT (sem custo a mais)",
-    "openrouter": "OpenRouter, pago por uso (na nossa medição, a conversa de 6 pedidos custou US$ 0,0009)",
+    "openrouter": "OpenRouter, pago por uso (na nossa mediçêo, a conversa de 6 pedidos custou US$ 0,0009)",
 }
 AJUDA = ("Sou o Jarvis. Peça em português: \"quanto espaço livre tem no disco?\", \"lembre que…\", "
          "\"apaga a pasta X\" (eu pergunto antes de mudar algo; responda /sim ou /nao — /yes e /no também valem).\n\n"
@@ -28,7 +28,7 @@ SINONIMOS = {"/yes": "/sim", "/si": "/sim", "/sí": "/sim", "/no": "/nao"}   # s
 
 
 def canal_telegram():
-    """O canal do INTELECTO, aceitando também /yes /no (inglês) e /si /no (espanhol) na aprovação."""
+    """O canal do INTELECTO, aceitando também /yes /no (inglês) e /si /no (espanhol) na aprovaçêo."""
     from intelecto.canais.telegram import Telegram
 
     class TelegramMultilingue(Telegram):
@@ -45,7 +45,7 @@ def canal_telegram():
 
 
 def ler_env(caminho) -> dict:
-    """Lê KEY=valor sem exportar para os.environ (o token não vaza para os subprocessos)."""
+    """Lê KEY=valor sem exportar para os.environ (o token nêo vaza para os subprocessos)."""
     d = {}
     try:
         with open(caminho, encoding="utf-8") as f:
@@ -70,7 +70,7 @@ def uma_instancia(caminho):
 
 
 def fazer_ao_receber(p, criar, nome_inicial):
-    """Devolve a função que o canal Telegram do INTELECTO chama a cada mensagem do dono."""
+    """Devolve a funçêo que o canal Telegram do INTELECTO chama a cada mensagem do dono."""
     estado = {"nome": nome_inicial}
 
     async def ao_receber(chat, texto, perguntar):
@@ -84,17 +84,17 @@ def fazer_ao_receber(p, criar, nome_inicial):
                         "Para trocar: /cerebro claude, /cerebro codex ou /cerebro openrouter. A memória e a trava ficam.")
             nome = partes[1].lower()
             if nome not in DESCRICAO:
-                return "Não conheço esse cérebro. Use claude, codex ou openrouter."
+                return "Nêo conheço esse cérebro. Use claude, codex ou openrouter."
             try:
                 novo = criar(nome)
             except Exception as e:   # sem chave, sem programa instalado…
-                return f"Não consegui ligar o {nome}: {e}. Continuo com o {estado['nome']}."
+                return f"Nêo consegui ligar o {nome}: {e}. Continuo com o {estado['nome']}."
             p.agente.provedor = novo
             estado["nome"] = nome
             if p.auditoria:
                 p.auditoria.registrar("cerebro_trocado", para=nome)
             return f"Pronto: agora quem pensa é o {DESCRICAO[nome]}. Lembro de tudo o que já sabia, e a trava é a mesma."
-        p.portao.perguntar = perguntar          # a aprovação vai para o Telegram de quem pediu
+        p.portao.perguntar = perguntar          # a aprovaçêo vai para o Telegram de quem pediu
         return await p.agente.responder(chat, texto)
 
     ao_receber.estado = estado
@@ -122,5 +122,5 @@ async def rodar(nome, executor="caixa"):
     print(f"Jarvis no Telegram: @{eu.get('username')} · cérebro {nome} · donos {len(donos)} · "
           f"executor {executor} · memória em {home}", flush=True)
     if not donos:
-        print("ATENÇÃO: DONOS vazio → o bot só responde /id (mande /id para ele e ponha o número em DONOS)", flush=True)
+        print("ATENÇêO: DONOS vazio → o bot só responde /id (mande /id para ele e ponha o número em DONOS)", flush=True)
     await bot.rodar(fazer_ao_receber(p, cerebros.criar, nome))

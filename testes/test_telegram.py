@@ -71,7 +71,7 @@ class CerebroRoteiro(Provedor):
             return Resposta(f"[{self.nome}] {resultado[-1]}")
         if "quando vence" in pedido:
             contexto = " ".join(m.texto for m in mensagens if m.papel == "system")
-            return Resposta(f"[{self.nome}] vence dia 12" if "dia 12" in contexto else f"[{self.nome}] não sei")
+            return Resposta(f"[{self.nome}] vence dia 12" if "dia 12" in contexto else f"[{self.nome}] nêo sei")
         return Resposta(f"[{self.nome}] anotado")
 
 
@@ -121,8 +121,8 @@ def test_dono_apagar_pede_ok_nao_mantem_sim_apaga(tmp_path):
     async def cenario():
         novos = await enviar_e_esperar(bot, ao, "apaga a pasta logs", "Posso rodar")
         assert any("rm -r logs" in t for t in novos)
-        novos = await enviar_e_esperar(bot, ao, "/nao", "não rodei")
-        assert (area / "logs").exists()                    # NÃO: a pasta fica
+        novos = await enviar_e_esperar(bot, ao, "/nao", "nêo rodei")
+        assert (area / "logs").exists()                    # NêO: a pasta fica
         novos = await enviar_e_esperar(bot, ao, "apaga a pasta logs", "Posso rodar")
         novos = await enviar_e_esperar(bot, ao, "/sim", "saída 0")
         assert not (area / "logs").exists()                # SIM: a pasta some
@@ -140,7 +140,7 @@ def test_cerebro_troca_e_o_novo_lembra(tmp_path):
         assert ao.estado["nome"] == "openrouter" and p.agente.provedor.nome == "openrouter"
         novos = await enviar_e_esperar(bot, ao, "quando vence o prazo do contrato da cliente Marta?", "vence dia 12")
         assert any(t.startswith("[openrouter] vence dia 12") for t in novos)
-        novos = await enviar_e_esperar(bot, ao, "/cerebro gemini", "Não conheço")
+        novos = await enviar_e_esperar(bot, ao, "/cerebro gemini", "Nêo conheço")
         assert ao.estado["nome"] == "openrouter"
     asyncio.run(cenario())
     srv.shutdown()
@@ -152,7 +152,7 @@ def test_token_fica_fora_do_ambiente(tmp_path, monkeypatch):
     monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
     d = telegram_jarvis.ler_env(env)
     assert d["TELEGRAM_BOT_TOKEN"] == "123:abc" and d["DONOS"] == "1,2"
-    assert "TELEGRAM_BOT_TOKEN" not in os.environ        # nunca exportado: os cérebros não recebem o token
+    assert "TELEGRAM_BOT_TOKEN" not in os.environ        # nunca exportado: os cérebros nêo recebem o token
 
 
 def test_uma_instancia_so(tmp_path):
@@ -187,7 +187,7 @@ def test_yes_e_no_tambem_aprovam(tmp_path):
 
     async def cenario():
         await enviar_e_esperar(bot, ao, "apaga a pasta logs", "Posso rodar")
-        await enviar_e_esperar(bot, ao, "/no", "não rodei")
+        await enviar_e_esperar(bot, ao, "/no", "nêo rodei")
         assert (area / "logs").exists()
         await enviar_e_esperar(bot, ao, "apaga a pasta logs", "Posso rodar")
         await enviar_e_esperar(bot, ao, "/yes", "saída 0")

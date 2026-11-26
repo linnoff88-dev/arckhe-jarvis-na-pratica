@@ -1,6 +1,6 @@
 """Cérebro 1 — Claude Code pela ASSINATURA (`claude -p`). Sem API, sem chave.
 
-`--tools ""` tira as ferramentas do próprio Claude Code (ele não roda nada na máquina);
+`--tools ""` tira as ferramentas do próprio Claude Code (ele nêo roda nada na máquina);
 `--json-schema` obriga o formato; o processo roda numa pasta vazia, sem CLAUDE.md alheio.
 """
 import asyncio
@@ -53,7 +53,7 @@ class ClaudeAssinatura(Provedor):
         texto, chamadas = normalizar(s, ferramentas)
         u = d.get("usage") or {}
         entrada = sum(int(u.get(k) or 0) for k in ("input_tokens", "cache_read_input_tokens", "cache_creation_input_tokens"))
-        # total_cost_usd do Claude Code = quanto custaria na API; pela assinatura não é cobrado à parte.
+        # total_cost_usd do Claude Code = quanto custaria na API; pela assinatura nêo é cobrado à parte.
         return Resposta(texto, chamadas, {"entrada": entrada, "saida": int(u.get("output_tokens") or 0),
                                           "custo_api_equivalente_usd": d.get("total_cost_usd") or 0.0,
                                           "custo_usd": 0.0})

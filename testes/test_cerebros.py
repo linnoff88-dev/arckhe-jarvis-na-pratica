@@ -60,7 +60,7 @@ print(json.dumps({{"structured_output": {{"texto": "", "chamadas": [{{"nome": "r
     reg = json.loads(registro.read_text())
     assert reg["api"] == []                                   # assinatura, nunca API
     argv = reg["argv"]
-    assert argv[argv.index("--tools") + 1] == ""              # o Claude Code não roda nada
+    assert argv[argv.index("--tools") + 1] == ""              # o Claude Code nêo roda nada
     assert "--json-schema" in argv and "--no-session-persistence" in argv
 
 
@@ -140,7 +140,7 @@ def test_fabrica_conhece_os_tres():
 
 
 def test_roteiro_roda_inteiro_com_mock(tmp_path, monkeypatch):
-    """A mesma conversa, com o cérebro de mentira e o executor local: a medição funciona de ponta a ponta."""
+    """A mesma conversa, com o cérebro de mentira e o executor local: a mediçêo funciona de ponta a ponta."""
     import jarvis
     monkeypatch.setattr(jarvis, "RESULTADOS", tmp_path)
     rel = asyncio.run(jarvis.medir_um("mock", "local"))

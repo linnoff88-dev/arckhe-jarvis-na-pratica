@@ -1,4 +1,4 @@
-# instalação do zero: clone novo → instalar.sh → testes → ensaio sem IA
+# instalaçêo do zero: clone novo → instalar.sh → testes → ensaio sem IA
 # 2026-11-20T04:26:37-03:00 · Ubuntu 24.04 · Python 3.12.3
 $ git clone https://github.com/inematds/jarvis-na-pratica && cd jarvis-na-pratica
 commit 5c25a8c
@@ -8,18 +8,18 @@ intelecto ok 3.12.3
 claude: 2.1.318 (Claude Code)
 codex:  codex-cli 0.169.1
 caixa ok
-openrouter: chave encontrada (não é mostrada)
+openrouter: chave encontrada (nêo é mostrada)
 ...............                                                          [100%]
 15 passed in 4.10s
 serviço do Telegram pronto para esta pasta: systemd/jarvis-na-pratica-telegram.gerado.service
 Pronto. Teste: .venv/bin/python jarvis.py medir --cerebros mock --executor local
 $ .venv/bin/python jarvis.py medir --cerebros mock --executor local
-  [mock] disco       ERR    0.0s 1 rodada(s) não usou rodar_comando; resposta sem número
+  [mock] disco       ERR    0.0s 1 rodada(s) nêo usou rodar_comando; resposta sem número
   [mock] lembrar     ok     0.0s 2 rodada(s) 
   [mock] recordar    ok     0.0s 2 rodada(s) 
-  [mock] apagar-nao  ERR    0.0s 1 rodada(s) a trava não pediu OK
-  [mock] apagar-sim  ERR    0.0s 1 rodada(s) a trava não pediu OK; a pasta logs continua lá
+  [mock] apagar-nao  ERR    0.0s 1 rodada(s) a trava nêo pediu OK
+  [mock] apagar-sim  ERR    0.0s 1 rodada(s) a trava nêo pediu OK; a pasta logs continua lá
   [mock] reboot      ok     0.0s 2 rodada(s) 
 salvo: <pasta nova>/jarvis-na-pratica/resultados/conversa-2026-11-20T0426.json e .md
 # o cérebro mock é de mentira: falhar em disco/apagar é esperado (ele só entende pedidos com rode:)
-# observação: a máquina já tinha Python, Docker, Claude Code e Codex instalados e logados; o clone, a venv e o INTELECTO foram do zero.
+# observaçêo: a máquina já tinha Python, Docker, Claude Code e Codex instalados e logados; o clone, a venv e o INTELECTO foram do zero.

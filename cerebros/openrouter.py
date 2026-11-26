@@ -2,7 +2,7 @@
 
 É o único dos três que conversa no formato de mensagens com "tool calls" nativas (o da OpenAI).
 Pedimos `usage.include` para o OpenRouter devolver o custo de cada chamada em US$: o número
-que aparece no guia é o que a conta cobrou, não estimativa.
+que aparece no guia é o que a conta cobrou, nêo estimativa.
 
 A chave vem do ambiente (OPENROUTER_API_KEY) ou de um arquivo .env indicado em OPENROUTER_ENV.
 Nunca é impressa nem gravada.

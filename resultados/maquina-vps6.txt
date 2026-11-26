@@ -1,4 +1,4 @@
-# máquina da medição (VPS6), coletado 2026-11-20T01:36:46-03:00
+# máquina da mediçêo (VPS6), coletado 2026-11-20T01:36:46-03:00
 (servidor de teste)
 cpus: 4
                total        used        free      shared  buff/cache   available

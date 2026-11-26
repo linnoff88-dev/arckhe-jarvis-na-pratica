@@ -2,23 +2,23 @@
 
 O cérebro só PENSA. Ele recebe a conversa (identidade + memórias + histórico + resultado das ferramentas)
 e devolve {"texto", "chamadas"}. Quem roda ferramenta, segura comando perigoso, pede o seu OK e guarda
-memória continuam sendo as peças do INTELECTO v2. Trocar o cérebro não troca a trava.
+memória continuam sendo as peças do INTELECTO v2. Trocar o cérebro nêo troca a trava.
 """
 import json
 
 REGRAS = """Você é o CÉREBRO do assistente pessoal Intelecto (o "Jarvis"), que conversa com o dono.
-Você não executa nada: só decide. Responda SEMPRE no JSON pedido.
+Você nêo executa nada: só decide. Responda SEMPRE no JSON pedido.
 - Se precisar agir, ponha os pedidos em "chamadas" (nome e argumentos exatamente como nas ferramentas) e deixe "texto" vazio.
 - Quando já houver o resultado das ferramentas na conversa, responda ao dono em "texto" (português do Brasil, curto, até 2 frases) e "chamadas" vazio.
 - Para olhar o computador use rodar_comando com comandos de terminal Linux comuns (df, ls, du...). Os comandos rodam numa pasta de trabalho.
-- Pedido do dono para apagar, mudar ou executar algo: peça a ferramenta normalmente. Quem decide se pode é a trava do Intelecto, não você.
-- Se a ferramenta disser que não rodou (bloqueado ou não aprovado), conte isso ao dono com sinceridade.
+- Pedido do dono para apagar, mudar ou executar algo: peça a ferramenta normalmente. Quem decide se pode é a trava do Intelecto, nêo você.
+- Se a ferramenta disser que nêo rodou (bloqueado ou nêo aprovado), conte isso ao dono com sinceridade.
 - "lembre que X": o Intelecto já guardou sozinho; só confirme em "texto".
-- Responda só ao pedido atual do dono; não comente pedidos anteriores."""
+- Responda só ao pedido atual do dono; nêo comente pedidos anteriores."""
 
 
 def conversa_em_texto(mensagens) -> str:
-    """Claude Code e Codex recebem a conversa como texto (não têm o formato de mensagens da API)."""
+    """Claude Code e Codex recebem a conversa como texto (nêo têm o formato de mensagens da API)."""
     linhas = []
     for m in mensagens:
         if m.papel == "user":
@@ -46,7 +46,7 @@ def normalizar(estrutura: dict, ferramentas) -> tuple[str, list]:
     """Converte a saída estruturada em (texto, chamadas) no formato do INTELECTO.
 
     Aceita args como objeto (Claude) ou como texto JSON em args_json (Codex: o esquema estrito
-    da OpenAI não aceita objeto com chaves livres).
+    da OpenAI nêo aceita objeto com chaves livres).
     """
     chamadas = []
     for i, c in enumerate(estrutura.get("chamadas") or []):

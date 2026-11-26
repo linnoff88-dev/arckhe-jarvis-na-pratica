@@ -3,5 +3,5 @@ unit jarvis-na-pratica-telegram: active (enabled: enabled)
 linha de início do serviço:
 Jarvis no Telegram: @<bot de teste> · cérebro claude · donos 1 · executor caixa · memória em ~/kits/jarvis-na-pratica/dados
 donos no .env: 1
-permissão do .env: 600
-o que NÃO foi feito: nenhuma mensagem enviada pelo bot; teste do dono no celular ainda não feito
+permissêo do .env: 600
+o que NêO foi feito: nenhuma mensagem enviada pelo bot; teste do dono no celular ainda nêo feito
