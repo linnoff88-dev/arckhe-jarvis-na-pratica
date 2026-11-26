@@ -6,7 +6,7 @@
 </div>
 
 
-[![Jarvis na prêÂ¡tica: cêÂ©rebro trocêÂ¡vel](guia/assets/banner.jpg)](https://inematds.github.io/jarvis-na-pratica/guia/)
+[![Jarvis na prêÂ¡tica: cêÂ©rebro trocêÂ¡vel](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/)
 
 **ê°Å¸â¡Â§ê°Å¸â¡Â· [PortuguêÂªs](README.md) êÂ· ê°Å¸â¡Âºê°Å¸â¡Â¸ [English](README.en.md) êÂ· ê°Å¸â¡Âªê°Å¸â¡Â¸ [EspaêÂ±ol](README.es.md)**
 
@@ -16,7 +16,7 @@
 
 ## ê°Å¸ââ Guia de uso
 
-Guia completo (o ganho, como funciona, qual cêÂ©rebro usar e a prova medida): **https://inematds.github.io/jarvis-na-pratica/guia/**
+Guia completo (o ganho, como funciona, qual cêÂ©rebro usar e a prova medida): **https://linnoff88-dev.github.io/arckhe-/guia/**
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
 
@@ -25,7 +25,7 @@ Guia completo (o ganho, como funciona, qual cêÂ©rebro usar e a prova medida
 Abra o Claude Code ou o Codex na mêÂ¡quina onde o Jarvis vai morar e cole:
 
 ```text
-Leia o projeto "Jarvis na prêÂ¡tica" em https://github.com/inematds/jarvis-na-pratica (o README explica tudo, inclusive a instalaêÂ§êÂ£o).
+Leia o projeto "Jarvis na prêÂ¡tica" em https://github.com/linnoff88-dev/jarvis-na-pratica (o README explica tudo, inclusive a instalaêÂ§êÂ£o).
 Depois confira esta mêÂ¡quina e me responda em portuguêÂªs simples:
 1. Quais dos trêÂªs cêÂ©rebros eu jêÂ¡ consigo usar aqui (Claude Code, Codex ou OpenRouter)?
 2. O que falta instalar ou ligar, e se a caixa fechada (Docker) funciona nesta mêÂ¡quina.
@@ -60,12 +60,12 @@ Os registros brutos estêÂ£o em [`resultados/`](resultados/) (a mêÂ¡qui
 - Pelo menos um cêÂ©rebro:
   - **Claude Code** logado na assinatura (`claude` no PATH). Nenhuma `ANTHROPIC_API_KEY` êÂ© usada: o kit tira essas variêÂ¡veis do processo.
   - **Codex** logado no ChatGPT (`codex login`; `codex` no PATH, versêÂ£o recente). Nenhuma `OPENAI_API_KEY` êÂ© usada.
-  - **OpenRouter**: `OPENROUTER_API_KEY` no ambiente, ou num arquivo `.env` apontado por `OPENROUTER_ENV` (padrêÂ£o `~/.config/inema/.env`). Paga por uso.
+  - **OpenRouter**: `OPENROUTER_API_KEY` no ambiente, ou num arquivo `.env` apontado por `OPENROUTER_ENV` (padrêÂ£o `~/.config/ARCKHÉ/.env`). Paga por uso.
 
 ### Instalar
 
 ```bash
-git clone https://github.com/inematds/jarvis-na-pratica && cd jarvis-na-pratica
+git clone https://github.com/linnoff88-dev/jarvis-na-pratica && cd jarvis-na-pratica
 ./instalar.sh        # cria .venv, instala o INTELECTO v2 (commit d428f31 = v2.3.2) e roda os testes
 ```
 
@@ -153,8 +153,8 @@ O cêÂ©rebro nunca toca na mêÂ¡quina. Ele devolve `{"texto", "chamadas"
 
 ## CrêÂ©ditos e licenêÂ§a
 
-ConstruêÂ­do sobre o [INTELECTO v2](https://github.com/inematds/intelecto-v2) ([guia](https://inematds.github.io/intelecto-v2/guia/)). MIT.
-GrêÂ¡tis no [inema.club](https://inema.club), direto na internet.
+ConstruêÂ­do sobre o [INTELECTO v2](https://github.com/linnoff88-dev/intelecto-v2) ([guia](https://linnoff88-dev.github.io/arckhe-/guia/)). MIT.
+GrêÂ¡tis no [ARCKHÉ AI](https://ARCKHÉ AI), direto na internet.
 
 ---
 

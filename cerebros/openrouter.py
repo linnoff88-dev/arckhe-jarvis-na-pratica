@@ -21,7 +21,7 @@ def ler_chave() -> str:
     chave = os.environ.get("OPENROUTER_API_KEY", "")
     if chave:
         return chave
-    for caminho in filter(None, [os.environ.get("OPENROUTER_ENV"), os.path.expanduser("~/.config/inema/.env")]):
+    for caminho in filter(None, [os.environ.get("OPENROUTER_ENV"), os.path.expanduser("~/.config/ARCKHÉ/.env")]):
         if os.path.isfile(caminho):
             for linha in open(caminho, encoding="utf-8"):
                 if linha.startswith("OPENROUTER_API_KEY="):

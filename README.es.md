@@ -1,6 +1,6 @@
 # 🧠 Jarvis en la práctica — cerebro intercambiable
 
-[![Jarvis en la práctica: cerebro intercambiable](guia/assets/banner-es.jpg)](https://inematds.github.io/jarvis-na-pratica/guia/es/)
+[![Jarvis en la práctica: cerebro intercambiable](guia/assets/banner-es.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/es/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,7 +10,7 @@ Es el Jarvis de INTELECTO v2, un asistente personal gratis que funciona de verda
 
 ## 📖 Guía de uso
 
-Guía completa (los beneficios, cómo funciona, qué cerebro usar y la prueba medida): **https://inematds.github.io/jarvis-na-pratica/guia/es/**
+Guía completa (los beneficios, cómo funciona, qué cerebro usar y la prueba medida): **https://linnoff88-dev.github.io/arckhe-/guia/es/**
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
 
@@ -19,7 +19,7 @@ Guía completa (los beneficios, cómo funciona, qué cerebro usar y la prueba me
 Abre Claude Code o Codex en la máquina donde vivirá Jarvis y pega esto:
 
 ```text
-Lee el proyecto “Jarvis na prática” en https://github.com/inematds/jarvis-na-pratica (el README explica todo, incluida la instalación).
+Lee el proyecto “Jarvis na prática” en https://github.com/linnoff88-dev/jarvis-na-pratica (el README explica todo, incluida la instalación).
 Después revisa esta máquina y respóndeme en portugués sencillo:
 1. ¿Cuáles de los tres cerebros puedo usar aquí (Claude Code, Codex u OpenRouter)?
 2. ¿Qué falta instalar o activar, y si la caja cerrada (Docker) funciona en esta máquina?
@@ -54,12 +54,12 @@ Los registros sin procesar están en [`resultados/`](resultados/) (la máquina e
 - Al menos un cerebro:
   - **Claude Code** con la sesión iniciada en la suscripción (`claude` en el PATH). No se usa ninguna `ANTHROPIC_API_KEY`: el kit quita esas variables del proceso.
   - **Codex** con la sesión iniciada en ChatGPT (`codex login`; `codex` en el PATH, versión reciente). No se usa ninguna `OPENAI_API_KEY`.
-  - **OpenRouter**: `OPENROUTER_API_KEY` en el entorno o en un archivo `.env` indicado por `OPENROUTER_ENV` (predeterminado `~/.config/inema/.env`). Se paga por uso.
+  - **OpenRouter**: `OPENROUTER_API_KEY` en el entorno o en un archivo `.env` indicado por `OPENROUTER_ENV` (predeterminado `~/.config/ARCKHÉ/.env`). Se paga por uso.
 
 ### Instalar
 
 ```bash
-git clone https://github.com/inematds/jarvis-na-pratica && cd jarvis-na-pratica
+git clone https://github.com/linnoff88-dev/jarvis-na-pratica && cd jarvis-na-pratica
 ./instalar.sh        # crea .venv, instala INTELECTO v2 (commit d428f31 = v2.3.2) y ejecuta las pruebas
 ```
 
@@ -147,5 +147,5 @@ El cerebro nunca toca la máquina. Devuelve `{"texto", "chamadas"}`; quien ejecu
 
 ## Créditos y licencia
 
-Construido sobre [INTELECTO v2](https://github.com/inematds/intelecto-v2) ([guía](https://inematds.github.io/intelecto-v2/guia/) (en portugués)). MIT.  
-Gratis en [inema.club](https://inema.club), directamente en Internet.
+Construido sobre [INTELECTO v2](https://github.com/linnoff88-dev/intelecto-v2) ([guía](https://linnoff88-dev.github.io/arckhe-/guia/) (en portugués)). MIT.  
+Gratis en [ARCKHÉ AI](https://ARCKHÉ AI), directamente en Internet.

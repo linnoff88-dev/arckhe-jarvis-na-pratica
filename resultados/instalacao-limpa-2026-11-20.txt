@@ -1,6 +1,6 @@
 # instalaçêo do zero: clone novo → instalar.sh → testes → ensaio sem IA
 # 2026-11-20T04:26:37-03:00 · Ubuntu 24.04 · Python 3.12.3
-$ git clone https://github.com/inematds/jarvis-na-pratica && cd jarvis-na-pratica
+$ git clone https://github.com/linnoff88-dev/jarvis-na-pratica && cd jarvis-na-pratica
 commit 5c25a8c
 $ ./instalar.sh
 == conferência ==
